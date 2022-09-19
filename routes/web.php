@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('form');
-});
+    return view('welcome');
+})->name('welcome-form');
+
+Route::get('/form', function () {
+    // dd(Request:: all()); 
+  return view('form');
+})->name('form_authors-form');
+
+Route::get('/list', function () {
+    // dd(Request:: all()); 
+  return view('list');
+})->name('list-form');

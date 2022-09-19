@@ -28,3 +28,10 @@ Route::group(['prefix' => 'v1'], function () {
     // 'posts' => PostController::class,
 ]);
 });
+
+Route::namespace('Api')->prefix('v1')->group(function () {
+    Route::get('books/list','BookController@list');
+    Route::get('books/by-id/{id}','BookController@byId');
+    Route::put('books/update','BookController@update');
+    Route::delete('books/{id}','BookController@destroy');
+});
