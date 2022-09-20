@@ -10,11 +10,8 @@ return [
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
-  
             'database' => database_path('base.db'),
-  
             'prefix' => '',
-  
             'exec' => 'PRAGMA foreign_keys = ON;', 
         ],
 

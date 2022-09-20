@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -14,7 +15,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+      return Book::all();
     }
 
     /**
@@ -35,7 +36,13 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      try {
+        $created_book = Book::create($request->all());
+        return response()->json(["OTBET" => "ОК",]);
+      } catch (\Illuminate\Database\QueryException $e) {
+          var_dump($e->errorInfo);
+      }
+      
     }
 
     /**
@@ -46,7 +53,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+      return $book;
     }
 
     /**
@@ -69,7 +76,10 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+      $book = Book::findOrFail($id);
+      $book->fill($request->all());
+      $book->save();
+      return Book::all();
     }
 
     /**
@@ -80,6 +90,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+      $book->delete();
+      return $book;
     }
 }
